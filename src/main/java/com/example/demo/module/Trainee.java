@@ -30,8 +30,8 @@ public class Trainee {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private int id;
 
-    @NotEmpty
-    @Length(max = 64)
+    @NotEmpty(message = "名称不能为空")
+    @Length(max = 64, message = "名称长度需小于64")
     @Column(length = 64, nullable = false)
     private String name;
 
@@ -39,23 +39,23 @@ public class Trainee {
     @JsonIgnore
     private Team team;
 
-    @NotEmpty
-    @Length(max = 64)
+    @NotEmpty(message = "办公室不能为空")
+    @Length(max = 64, message = "办公室名称长度需小于64")
     @Column(length = 64, nullable = false)
     private String office;
 
-    @NotEmpty
-    @Email
+    @NotEmpty(message = "电子邮箱不能为空")
+    @Email(message = "电子邮箱格式不合法")
     @Column(length = 64, nullable = false)
     private String email;
 
-    @NotEmpty
-    @Length(max = 64)
+    @NotEmpty(message = "github账号不能为空")
+    @Length(max = 64, message = "github账号长度需小于64")
     @Column(length = 64, nullable = false)
     private String github;
 
-    @NotEmpty
-    @Length(max = 64)
+    @NotEmpty(message = "zoomId不能为空")
+    @Length(max = 64, message = "zoomId长度需小于64")
     @Column(length = 64, nullable = false)
     private String zoomId;
 }

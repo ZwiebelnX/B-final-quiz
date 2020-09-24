@@ -25,8 +25,8 @@ public class Trainer {
     private long id;
 
 
-    @NotEmpty
-    @Length(max = 64)
+    @NotEmpty(message = "讲师名称不能为空")
+    @Length(max = 64, message = "讲师名称长度需小于64")
     @Column(length = 64, nullable = false)
     private String name;
 }
