@@ -74,4 +74,11 @@ class ApiIntegrationTests {
 
         assertEquals(35, traineeRepo.count());
     }
+
+    @Test
+    public void should_get_ungroup_list_before_grouping() throws Exception {
+        mockMvc.perform(get("/trainees/ungroupedList"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", hasSize(35)));
+    }
 }

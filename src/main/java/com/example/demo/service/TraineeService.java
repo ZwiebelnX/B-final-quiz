@@ -18,9 +18,7 @@ import javax.transaction.Transactional;
 @Service
 public class TraineeService {
 
-    public static final List<Trainee> traineeList = new ArrayList<>();
-
-    private static int nextId = 1;
+    public static List<Trainee> traineeList = new ArrayList<>();
 
     private final TraineeRepo traineeRepo;
 
@@ -28,8 +26,8 @@ public class TraineeService {
         this.traineeRepo = traineeRepo;
     }
 
-    public List<Trainee> getTraineeList() {
-        return traineeList;
+    public List<Trainee> getUngroupedList() {
+        return traineeRepo.findAllByTeamNull();
     }
 
     @Transactional
@@ -39,11 +37,6 @@ public class TraineeService {
     }
 
 
-    private static int getNextId() {
-        int id = nextId;
-        nextId++;
-        return id;
-    }
 
     @PostConstruct
     @Transactional

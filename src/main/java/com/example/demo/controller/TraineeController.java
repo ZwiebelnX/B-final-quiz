@@ -29,9 +29,10 @@ public class TraineeController {
         this.traineeService = traineeService;
     }
 
-    @GetMapping("/list")
-    public ResponseEntity<List<Trainee>> getTraineeList() {
-        return ResponseEntity.ok(traineeService.getTraineeList());
+    @GetMapping("/ungroupedList")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Trainee> getUngroupedTraineeList() {
+        return traineeService.getUngroupedList();
     }
 
     @PostMapping
