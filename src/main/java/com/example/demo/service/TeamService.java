@@ -3,45 +3,73 @@ package com.example.demo.service;
 
 import com.example.demo.model.Team;
 import com.example.demo.model.Trainee;
+import com.example.demo.model.Trainer;
 import com.example.demo.model.exception.TeamNameConflictException;
 import com.example.demo.model.exception.TeamNotFoundException;
+import com.example.demo.repository.TeamRepo;
+import com.example.demo.repository.TraineeRepo;
+import com.example.demo.repository.TrainerRepo;
 
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+
+import javax.transaction.Transactional;
 
 @Service
 public class TeamService {
 
-    public static final List<Team> teamList = new ArrayList<>();
+    private final TeamRepo teamRepo;
 
-    public List<Team> splitIntoTeam() {
-        if (teamList.size() < 6) {
-            teamList.clear();
-            for (int i = 0; i < 6; i++) {
-                teamList.add(Team.builder().name("Team " + (i + 1)).traineeList(new ArrayList<>()).build());
-            }
-        } else {
-            for (Team team : teamList) {
-                team.getTraineeList().clear();
-            }
+    private final TraineeRepo traineeRepo;
+
+    private final TrainerRepo trainerRepo;
+
+    private static List<Team> teamList;
+
+    public TeamService(TeamRepo teamRepo, TraineeRepo traineeRepo, TrainerRepo trainerRepo) {
+        this.teamRepo = teamRepo;
+        this.traineeRepo = traineeRepo;
+        this.trainerRepo = trainerRepo;
+    }
+
+    @Transactional
+    public void splitIntoTeam() {
+        clearTeamInfo();
+        teamRepo.deleteAll();
+
+        List<Trainer> trainerList = trainerRepo.findAll();
+        Collections.shuffle(trainerList);
+        int teamCount = trainerList.size() / 2;
+
+        Iterator<Trainer> trainerIterator = trainerList.listIterator();
+        List<Team> teamList = new ArrayList<>();
+        for (int teamSequence = 1; teamSequence <= teamCount; teamSequence++) {
+            Team team = Team.builder().name("组" + teamSequence).sequence(teamSequence).build();
+            teamRepo.save(team);
+            Trainer trainerOne = trainerIterator.next();
+            Trainer trainerTwo = trainerIterator.next();
+            trainerOne.setTeam(team);
+            trainerTwo.setTeam(team);
+            trainerRepo.save(trainerOne);
+            trainerRepo.save(trainerTwo);
+
+            teamList.add(team);
         }
 
-        List<Trainee> traineeList = new ArrayList<>(TraineeService.traineeList);
-        int teamIndex = 0;
-        while (traineeList.size() > 0) {
-            int selectId = (int) Math.round(Math.random() * (traineeList.size() - 1));
-            teamList.get(teamIndex).getTraineeList().add(traineeList.get(selectId));
-            traineeList.remove(selectId);
-            if (teamIndex >= 5) {
-                teamIndex = 0;
-            } else {
-                teamIndex++;
-            }
+        List<Trainee> traineeList = traineeRepo.findAll();
+        Collections.shuffle(traineeList);
+        Iterator<Trainee> traineeIterator = traineeRepo.findAll().listIterator();
+        int groupIndex = 0;
+        while (traineeIterator.hasNext() && teamList.size() > 0) {
+            Trainee trainee = traineeIterator.next();
+            trainee.setTeam(teamList.get(groupIndex));
+            traineeRepo.save(trainee);
+            groupIndex = ++groupIndex % teamList.size();
         }
-
-        return teamList;
     }
 
     public void changeTeamName(int index, Team team) throws TeamNotFoundException, TeamNameConflictException {
@@ -62,13 +90,18 @@ public class TeamService {
     }
 
     public List<Team> getTeamList() {
-        return teamList;
+        return teamRepo.findAll();
     }
 
-    public static void resetTeam() {
-        teamList.clear();
-        for (int i = 0; i < 6; i++) {
-            teamList.add(Team.builder().name("Team " + (i + 1)).traineeList(new ArrayList<>()).build());
-        }
+    @Transactional
+    public void clearTeamInfo() {
+        traineeRepo.findAll().forEach((item) -> {
+            item.setTeam(null);
+            traineeRepo.save(item);
+        });
+        trainerRepo.findAll().forEach((item) -> {
+            item.setTeam(null);
+            trainerRepo.save(item);
+        });
     }
 }

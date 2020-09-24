@@ -3,12 +3,15 @@ package com.example.demo.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import org.hibernate.annotations.OnDelete;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -40,7 +43,7 @@ public class Team {
     @Length(max = 64, message = "名称长度需小于64")
     private String name;
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
     private List<Trainee> traineeList;
 
     @OneToMany(mappedBy = "team")

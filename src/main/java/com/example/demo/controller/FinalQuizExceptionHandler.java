@@ -59,6 +59,7 @@ public class FinalQuizExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<BusinessError> otherExceptionHandler(Exception exception) {
+        exception.printStackTrace();
         HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         BusinessError businessError = BusinessError.builder()
             .timestamp(new Timestamp(System.currentTimeMillis()))

@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface TraineeRepo extends CrudRepository<Trainee, Long> {
     List<Trainee> findAllByTeamNull();
+
+    List<Trainee> findAll();
 }

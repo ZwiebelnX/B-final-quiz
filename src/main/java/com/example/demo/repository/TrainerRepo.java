@@ -9,4 +9,6 @@ import java.util.List;
 public interface TrainerRepo extends CrudRepository<Trainer, Long> {
 
     List<Trainer> findAllByTeamNull();
+
+    List<Trainer> findAll();
 }
