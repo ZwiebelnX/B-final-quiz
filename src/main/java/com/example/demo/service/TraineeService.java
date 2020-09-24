@@ -2,11 +2,18 @@ package com.example.demo.service;
 
 
 import com.example.demo.module.Trainee;
+import com.example.demo.repository.TraineeRepo;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 
 @Service
 public class TraineeService {
@@ -15,10 +22,10 @@ public class TraineeService {
 
     private static int nextId = 1;
 
-    public TraineeService() {
-        if (traineeList.size() == 0) {
-            addDefaultData();
-        }
+    private final TraineeRepo traineeRepo;
+
+    public TraineeService(TraineeRepo traineeRepo) {
+        this.traineeRepo = traineeRepo;
     }
 
     public List<Trainee> getTraineeList() {
@@ -31,11 +38,6 @@ public class TraineeService {
         return traineeList;
     }
 
-    public static void resetTrainee() {
-        traineeList.clear();
-        nextId = 1;
-        addDefaultData();
-    }
 
     private static int getNextId() {
         int id = nextId;
@@ -43,19 +45,21 @@ public class TraineeService {
         return id;
     }
 
-    private static void addDefaultData() {
-//        try {
-//            File file = new File("defaultList.txt");
-//            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-//            String lineString;
-//            while ((lineString = bufferedReader.readLine()) != null) {
-//                Trainee trainee = Trainee.builder().id(getNextId()).name(lineString).build();
-//                traineeList.add(trainee);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            System.exit(-1);
-//        }
+    @PostConstruct
+    @Transactional
+    public void addDefaultTraineeData() {
+        if (traineeRepo.count() == 0) {
+            try {
+                ObjectMapper objectMapper = new ObjectMapper();
+                File file = new File("trainee.json");
+                List<Trainee> traineeList = Arrays.asList(objectMapper.readValue(file, Trainee[].class));
+                traineeRepo.saveAll(traineeList);
+            } catch (Exception e) {
+                System.out.println("添加默认学员数据失败！");
+                e.printStackTrace();
+                System.exit(-1);
+            }
+        }
     }
 
 }

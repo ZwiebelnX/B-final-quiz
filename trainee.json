@@ -1,6 +1,247 @@
-{
-    "name": "Foo",
+[
+  {
+    "name": "沈乐棋",
+    "office": "武汉",
+    "email": "leqi.shen@thoughtworks.com",
+    "github": "github-shenleqi",
+    "zoomId": "leqi"
+  },
+  {
+    "name": "徐慧慧",
+    "office": "成都",
+    "email": "huihui.xu@thoughtworks.com",
+    "github": "github-xuhuihui",
+    "zoomId": "xuhuihui"
+  },
+  {
+    "name": "陈思聪",
+    "office": "深圳",
+    "email": "sicong.chen@thoughtworks.com",
+    "github": "github-chensicong",
+    "zoomId": "chensicong"
+  },
+  {
+    "name": "王江林",
+    "office": "成都",
+    "email": "jainglin.wang@thoughtworks.com",
+    "github": "github-wangjianglin",
+    "zoomId": "wangjianglin"
+  },
+  {
+    "name": "王登宇",
+    "office": "成都",
+    "email": "dengyu.wang@thoughtworks.com",
+    "github": "github-wangdengyu",
+    "zoomId": "wangdengyu"
+  },
+  {
+    "name": "杨思雨",
+    "office": "成都",
+    "email": "siyu.yang@thoughtworks.com",
+    "github": "github-yangsiyu",
+    "zoomId": "yangsiyu"
+  },
+  {
+    "name": "江雨舟",
+    "office": "武汉",
+    "email": "yuzhou.jiang@thoughtworks.com",
+    "github": "github-jiangyuzhou",
+    "zoomId": "jiangyuzhou"
+  },
+  {
+    "name": "廖燊",
+    "office": "深圳",
+    "email": "shen.liao@thoughtworks.com",
+    "github": "github-liaoshen",
+    "zoomId": "liaoshen"
+  },
+  {
+    "name": "胡晓",
     "office": "西安",
-    "email": "foo@thoughtworks.com",
-    "zoomId": "foo"
-}
+    "email": "xiao.hu@thoughtworks.com",
+    "github": "github-huxiao",
+    "zoomId": "huxiao"
+  },
+  {
+    "name": "但杰",
+    "office": "西安",
+    "email": "jie.dan@thoughtworks.com",
+    "github": "github-danjie",
+    "zoomId": "danjie"
+  },
+  {
+    "name": "盖迈达",
+    "office": "武汉",
+    "email": "maida.ge@thoughtworks.com",
+    "github": "github-gemaida",
+    "zoomId": "gemaida"
+  },
+  {
+    "name": "黄云洁",
+    "office": "成都",
+    "email": "yunjie.huang@thoughtworks.com",
+    "github": "github-huangyunjie",
+    "zoomId": "huangyunjie"
+  },
+  {
+    "name": "肖美琦",
+    "office": "武汉",
+    "email": "meiqi.xiao@thoughtworks.com",
+    "github": "github-xiaomeiqi",
+    "zoomId": "xiaomeiqi"
+  },
+  {
+    "name": "齐瑾浩",
+    "office": "深圳",
+    "email": "jinhao.qi@thoughtworks.com",
+    "github": "github-qijinhao",
+    "zoomId": "qijinhao"
+  },
+  {
+    "name": "刘亮亮",
+    "office": "成都",
+    "email": "liangliang.liu@thoughtworks.com",
+    "github": "github-liuliangliang",
+    "zoomId": "liuliangliang"
+  },
+  {
+    "name": "肖逸凡",
+    "office": "北京",
+    "email": "yifan.xiao@thoughtworks.com",
+    "github": "github-xiaoyifan",
+    "zoomId": "xiaoyifan"
+  },
+  {
+    "name": "王作文",
+    "office": "西安",
+    "email": "zuowen.wang@thoughtworks.com",
+    "github": "github-wangzuowen",
+    "zoomId": "wangzuowen"
+  },
+  {
+    "name": "郭瑞凌",
+    "office": "北京",
+    "email": "ruiling.guo@thoughtworks.com",
+    "github": "github-guoruiling",
+    "zoomId": "guoruiling"
+  },
+  {
+    "name": "李明豪",
+    "office": "深圳",
+    "email": "minghao.li@thoughtworks.com",
+    "github": "github-liminghao",
+    "zoomId": "liminghao"
+  },
+  {
+    "name": "党泽",
+    "office": "武汉",
+    "email": "ze.dang@thoughtworks.com",
+    "github": "github-dangze",
+    "zoomId": "dangze"
+  },
+  {
+    "name": "肖伊佐",
+    "office": "成都",
+    "email": "yizuo.xiao@thoughtworks.com",
+    "github": "github-xiaoyizuo",
+    "zoomId": "xiaoyizuo"
+  },
+  {
+    "name": "贠晨曦",
+    "office": "西安",
+    "email": "chenxi.yun@thoughtworks.com",
+    "github": "github-yunchenxi",
+    "zoomId": "yunchengxi"
+  },
+  {
+    "name": "李康宁",
+    "office": "北京",
+    "email": "kangneng.li@thoughtworks.com",
+    "github": "github-likangning",
+    "zoomId": "likangning"
+  },
+  {
+    "name": "马庆",
+    "office": "武汉",
+    "email": "qing.ma@thoughtworks.com",
+    "github": "github-maqing",
+    "zoomId": "maqing"
+  },
+  {
+    "name": "商婕",
+    "office": "成都",
+    "email": "jie.shang@thoughtworks.com",
+    "github": "github-shangjie",
+    "zoomId": "shangjie"
+  },
+  {
+    "name": "余榕",
+    "office": "武汉",
+    "email": "rong.yu@thoughtworks.com",
+    "github": "github-yurong",
+    "zoomId": "yurong"
+  },
+  {
+    "name": "谌哲",
+    "office": "西安",
+    "email": "zhe.chen@thoughtworks.com",
+    "github": "github-chenzhe",
+    "zoomId": "chenzhe"
+  },
+  {
+    "name": "董翔锐",
+    "office": "北京",
+    "email": "xiangrui.dong@thoughtworks.com",
+    "github": "github-dongxiangrui",
+    "zoomId": "dongxiangrui"
+  },
+  {
+    "name": "陈泰宇",
+    "office": "深圳",
+    "email": "taiyu.chen@thoughtworks.com",
+    "github": "github-chentaiyu",
+    "zoomId": "chentaiyu"
+  },
+  {
+    "name": "赵允齐",
+    "office": "武汉",
+    "email": "yunqi.zhao@thoughtworks.com",
+    "github": "github-zhaoyunqi",
+    "zoomId": "zhaoyunqi"
+  },
+  {
+    "name": "张柯",
+    "office": "成都",
+    "email": "ke.zhang@thoughtworks.com",
+    "github": "github-zhangke",
+    "zoomId": "zhangke"
+  },
+  {
+    "name": "廖文强",
+    "office": "武汉",
+    "email": "wenqiang.liao@thoughtworks.com",
+    "github": "github-liaowenqiang",
+    "zoomId": "liaowenqiang"
+  },
+  {
+    "name": "刘轲",
+    "office": "深圳",
+    "email": "ke.liu@thoughtworks.com",
+    "github": "github-liuke",
+    "zoomId": "liuke"
+  },
+  {
+    "name": "廖浚斌",
+    "office": "深圳",
+    "email": "junbin.liao@thoughtworks.com",
+    "github": "github-liaojunbin",
+    "zoomId": "liaojunbin"
+  },
+  {
+    "name": "凌凤仪",
+    "office": "深圳",
+    "email": "fengyi.ling@thoughtworks.com",
+    "github": "github-lingfengyi",
+    "zoomId": "lingfengyi"
+  }
+]
