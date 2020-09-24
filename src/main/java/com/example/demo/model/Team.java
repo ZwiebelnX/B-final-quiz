@@ -1,4 +1,4 @@
-package com.example.demo.module;
+package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -29,7 +29,6 @@ public class Team {
 
     @Id
     @GeneratedValue
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private long id;
 
     @Column(nullable = false)

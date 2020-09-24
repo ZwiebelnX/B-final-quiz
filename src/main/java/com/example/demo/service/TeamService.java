@@ -1,10 +1,10 @@
 package com.example.demo.service;
 
 
-import com.example.demo.module.Team;
-import com.example.demo.module.Trainee;
-import com.example.demo.module.exception.TeamNameConflictException;
-import com.example.demo.module.exception.TeamNotFoundException;
+import com.example.demo.model.Team;
+import com.example.demo.model.Trainee;
+import com.example.demo.model.exception.TeamNameConflictException;
+import com.example.demo.model.exception.TeamNotFoundException;
 
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 
-import com.example.demo.module.Trainee;
+import com.example.demo.model.Trainee;
 import com.example.demo.repository.TraineeRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -32,10 +32,10 @@ public class TraineeService {
         return traineeList;
     }
 
-    public List<Trainee> addTrainee(Trainee trainee) {
-        trainee.setId(getNextId());
-        traineeList.add(trainee);
-        return traineeList;
+    @Transactional
+    public Trainee addTrainee(Trainee trainee) {
+        traineeRepo.save(trainee);
+        return trainee;
     }
 
 

@@ -1,7 +1,6 @@
-package com.example.demo.module;
+package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -27,8 +26,7 @@ public class Trainee {
 
     @Id
     @GeneratedValue
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private int id;
+    private long id;
 
     @NotEmpty(message = "名称不能为空")
     @Length(max = 64, message = "名称长度需小于64")

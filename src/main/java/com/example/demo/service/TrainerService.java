@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.module.Trainer;
+import com.example.demo.model.Trainer;
 import com.example.demo.repository.TrainerRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

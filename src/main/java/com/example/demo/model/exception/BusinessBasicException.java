@@ -1,8 +1,8 @@
-package com.example.demo.module.exception;
+package com.example.demo.model.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class BusinessBasicException extends Exception {
+public class BusinessBasicException extends RuntimeException {
 
     private final HttpStatus httpStatus;
 
