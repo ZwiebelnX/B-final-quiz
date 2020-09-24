@@ -42,4 +42,8 @@ public class TrainerService {
     public Trainer addTrainer(Trainer trainer) {
         return trainerRepo.save(trainer);
     }
+
+    public void deleteTrainer(long trainerId) {
+        trainerRepo.deleteById(trainerId);
+    }
 }

@@ -129,4 +129,20 @@ class ApiIntegrationTests {
 
         assertEquals("小明", trainerRepo.findById(trainer.getId()).orElseThrow(Exception::new).getName());
     }
+
+    @Test
+    public void should_delete_trainer_when_delete_trainer_given_trainer_id() throws Exception {
+        Trainer trainer = Trainer.builder().name("小明").build();
+        String returnString = mockMvc.perform(
+            post("/trainers").content(objectMapper.writeValueAsString(trainer))
+                .contentType(MediaType.APPLICATION_JSON)
+                .characterEncoding("utf-8"))
+            .andExpect(status().isCreated())
+            .andReturn()
+            .getResponse()
+            .getContentAsString();
+        trainer = objectMapper.readValue(returnString, Trainer.class);
+
+        mockMvc.perform(delete("/trainers/" + trainer.getId())).andExpect(status().isNoContent());
+    }
 }
