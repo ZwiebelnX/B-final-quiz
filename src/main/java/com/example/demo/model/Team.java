@@ -43,4 +43,7 @@ public class Team {
     @OneToMany(mappedBy = "team")
     private List<Trainee> traineeList;
 
+    @OneToMany(mappedBy = "team")
+    private List<Trainer> trainerList;
+
 }

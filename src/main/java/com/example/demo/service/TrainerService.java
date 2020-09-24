@@ -46,4 +46,8 @@ public class TrainerService {
     public void deleteTrainer(long trainerId) {
         trainerRepo.deleteById(trainerId);
     }
+
+    public List<Trainer> getUngroupedTrainers() {
+        return trainerRepo.findAllByTeamNull();
+    }
 }

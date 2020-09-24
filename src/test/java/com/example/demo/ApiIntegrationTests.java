@@ -145,4 +145,11 @@ class ApiIntegrationTests {
 
         mockMvc.perform(delete("/trainers/" + trainer.getId())).andExpect(status().isNoContent());
     }
+
+    @Test
+    public void should_get_ungrouped_trainer_when_get_trainers_ungrouped() throws Exception {
+        mockMvc.perform(get("/trainers/ungrouped"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", hasSize(8)));
+    }
 }
