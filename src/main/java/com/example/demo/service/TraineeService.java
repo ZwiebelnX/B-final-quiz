@@ -55,4 +55,8 @@ public class TraineeService {
         }
     }
 
+    @Transactional
+    public void deleteTrainee(long traineeId) {
+        traineeRepo.deleteById(traineeId);
+    }
 }

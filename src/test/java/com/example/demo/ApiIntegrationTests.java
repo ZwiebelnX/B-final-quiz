@@ -16,6 +16,7 @@ import javax.transaction.Transactional;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -80,5 +81,31 @@ class ApiIntegrationTests {
         mockMvc.perform(get("/trainees/ungroupedList"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$", hasSize(35)));
+    }
+
+    @Test
+    public void should_delete_trainee_when_delete_id_given_trainee_id() throws Exception{
+        Trainee trainee = Trainee.builder()
+            .name("小明")
+            .email("xiaoming@gmail.com")
+            .github("xiaoming")
+            .office("深圳")
+            .zoomId("xiaoming")
+            .build();
+        String returnString = mockMvc.perform(
+            post("/trainees").content(objectMapper.writeValueAsString(trainee))
+                .contentType(MediaType.APPLICATION_JSON)
+                .characterEncoding("utf-8"))
+            .andExpect(status().isCreated())
+            .andReturn()
+            .getResponse()
+            .getContentAsString();
+        trainee = objectMapper.readValue(returnString, Trainee.class);
+        mockMvc.perform(get("/trainees/ungroupedList"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", hasSize(36)));
+        mockMvc.perform(delete("/trainees/" + trainee.getId())).andExpect(status().isNoContent());
+
+        assertEquals(35, traineeRepo.count());
     }
 }
