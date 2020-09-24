@@ -39,4 +39,7 @@ public class TrainerService {
         }
     }
 
+    public Trainer addTrainer(Trainer trainer) {
+        return trainerRepo.save(trainer);
+    }
 }

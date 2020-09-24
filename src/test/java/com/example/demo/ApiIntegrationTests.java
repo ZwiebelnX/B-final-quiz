@@ -1,7 +1,9 @@
 package com.example.demo;
 
 import com.example.demo.model.Trainee;
+import com.example.demo.model.Trainer;
 import com.example.demo.repository.TraineeRepo;
+import com.example.demo.repository.TrainerRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.jupiter.api.Test;
@@ -33,6 +35,9 @@ class ApiIntegrationTests {
 
     @Autowired
     private TraineeRepo traineeRepo;
+
+    @Autowired
+    private TrainerRepo trainerRepo;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -84,7 +89,7 @@ class ApiIntegrationTests {
     }
 
     @Test
-    public void should_delete_trainee_when_delete_id_given_trainee_id() throws Exception{
+    public void should_delete_trainee_when_delete_id_given_trainee_id() throws Exception {
         Trainee trainee = Trainee.builder()
             .name("小明")
             .email("xiaoming@gmail.com")
@@ -107,5 +112,21 @@ class ApiIntegrationTests {
         mockMvc.perform(delete("/trainees/" + trainee.getId())).andExpect(status().isNoContent());
 
         assertEquals(35, traineeRepo.count());
+    }
+
+    @Test
+    public void should_add_trainer_when_post_trainer() throws Exception {
+        Trainer trainer = Trainer.builder().name("小明").build();
+        String returnString = mockMvc.perform(
+            post("/trainers").content(objectMapper.writeValueAsString(trainer))
+                .contentType(MediaType.APPLICATION_JSON)
+                .characterEncoding("utf-8"))
+            .andExpect(status().isCreated())
+            .andReturn()
+            .getResponse()
+            .getContentAsString();
+        trainer = objectMapper.readValue(returnString, Trainer.class);
+
+        assertEquals("小明", trainerRepo.findById(trainer.getId()).orElseThrow(Exception::new).getName());
     }
 }
