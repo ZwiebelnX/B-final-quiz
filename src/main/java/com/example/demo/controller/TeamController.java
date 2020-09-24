@@ -32,8 +32,7 @@ public class TeamController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public List<Team> splitIntoTeam() {
-        teamService.splitIntoTeam();
-        return teamService.getTeamList();
+        return teamService.splitIntoTeam();
     }
 
     @PostMapping("/{index}/name")

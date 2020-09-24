@@ -43,10 +43,10 @@ public class Team {
     @Length(max = 64, message = "名称长度需小于64")
     private String name;
 
-    @OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "team", cascade = CascadeType.PERSIST)
     private List<Trainee> traineeList;
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team", cascade = CascadeType.PERSIST)
     private List<Trainer> trainerList;
 
 }

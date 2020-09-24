@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-
 import com.example.demo.model.Team;
 import com.example.demo.model.Trainee;
 import com.example.demo.model.Trainer;
@@ -37,7 +36,7 @@ public class TeamService {
     }
 
     @Transactional
-    public void splitIntoTeam() {
+    public List<Team> splitIntoTeam() {
         clearTeamInfo();
         teamRepo.deleteAll();
 
@@ -50,26 +49,26 @@ public class TeamService {
         for (int teamSequence = 1; teamSequence <= teamCount; teamSequence++) {
             Team team = Team.builder().name("组" + teamSequence).sequence(teamSequence).build();
             teamRepo.save(team);
-            Trainer trainerOne = trainerIterator.next();
-            Trainer trainerTwo = trainerIterator.next();
-            trainerOne.setTeam(team);
-            trainerTwo.setTeam(team);
-            trainerRepo.save(trainerOne);
-            trainerRepo.save(trainerTwo);
+            team.setTraineeList(new ArrayList<>());
+            team.setTrainerList(new ArrayList<>());
+            team.getTrainerList().add(trainerIterator.next());
+            team.getTrainerList().add(trainerIterator.next());
 
             teamList.add(team);
         }
 
         List<Trainee> traineeList = traineeRepo.findAll();
         Collections.shuffle(traineeList);
-        Iterator<Trainee> traineeIterator = traineeRepo.findAll().listIterator();
-        int groupIndex = 0;
+        Iterator<Trainee> traineeIterator = traineeList.listIterator();
+        int teamIndex = 0;
         while (traineeIterator.hasNext() && teamList.size() > 0) {
             Trainee trainee = traineeIterator.next();
-            trainee.setTeam(teamList.get(groupIndex));
-            traineeRepo.save(trainee);
-            groupIndex = ++groupIndex % teamList.size();
+            teamList.get(teamIndex).getTraineeList().add(trainee);
+            teamIndex = ++teamIndex % teamList.size();
         }
+
+        teamRepo.saveAll(teamList);
+        return teamList;
     }
 
     public void changeTeamName(int index, Team team) throws TeamNotFoundException, TeamNameConflictException {
