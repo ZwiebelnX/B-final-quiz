@@ -5,9 +5,6 @@ import com.example.demo.module.Trainee;
 
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,18 +44,18 @@ public class TraineeService {
     }
 
     private static void addDefaultData() {
-        try {
-            File file = new File("defaultList.txt");
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-            String lineString;
-            while ((lineString = bufferedReader.readLine()) != null) {
-                Trainee trainee = Trainee.builder().id(getNextId()).name(lineString).build();
-                traineeList.add(trainee);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(-1);
-        }
+//        try {
+//            File file = new File("defaultList.txt");
+//            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+//            String lineString;
+//            while ((lineString = bufferedReader.readLine()) != null) {
+//                Trainee trainee = Trainee.builder().id(getNextId()).name(lineString).build();
+//                traineeList.add(trainee);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            System.exit(-1);
+//        }
     }
 
 }
