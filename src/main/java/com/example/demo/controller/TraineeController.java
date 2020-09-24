@@ -31,7 +31,7 @@ public class TraineeController {
         this.traineeService = traineeService;
     }
 
-    @GetMapping("/ungroupedList")
+    @GetMapping("/ungrouped")
     @ResponseStatus(HttpStatus.OK)
     public List<Trainee> getUngroupedTraineeList() {
         return traineeService.getUngroupedList();
